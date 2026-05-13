@@ -26,7 +26,7 @@ From this folder:
 
 ```bash
 docker compose build
-docker compose up
+docker compose up -d
 ```
 
 Open this in your browser:
