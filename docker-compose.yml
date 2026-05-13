@@ -1,0 +1,25 @@
+services:
+  ros2-desktop:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ros2-mac-desktop:humble
+    platform: linux/arm64
+    container_name: ros2-humble-desktop
+    shm_size: "2gb"
+    ports:
+      - "6080:6080"
+      - "5901:5901"
+    environment:
+      - ROS_DOMAIN_ID=42
+      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+      - DISPLAY=:1
+      - VNC_RESOLUTION=1920x1080
+      - VNC_PASSWORD=ros
+      - LIBGL_ALWAYS_SOFTWARE=1
+    volumes:
+      - ./ros2_ws:/home/ros/ros2_ws
+      - ./shared:/home/ros/shared
+    working_dir: /home/ros/ros2_ws
+    tty: true
+    stdin_open: true
